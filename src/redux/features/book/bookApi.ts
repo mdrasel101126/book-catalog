@@ -7,6 +7,7 @@ const bookApi = bookCatalogApi.injectEndpoints({
     }),
     getSingleBook: builder.query({
       query: (id) => `/books/${id}`,
+      providesTags: ["reviews"],
     }),
   }),
 });

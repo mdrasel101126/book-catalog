@@ -2,10 +2,13 @@ import { bookCatalogApi } from "../../api/apiSlice";
 
 const bookApi = bookCatalogApi.injectEndpoints({
   endpoints: (builder) => ({
-    getProducts: builder.query({
+    getBooks: builder.query({
       query: () => "/books",
+    }),
+    getSingleBook: builder.query({
+      query: (id) => `/books/${id}`,
     }),
   }),
 });
 
-export const { useGetProductsQuery } = bookApi;
+export const { useGetBooksQuery, useGetSingleBookQuery } = bookApi;

@@ -23,7 +23,13 @@ const bookApi = bookCatalogApi.injectEndpoints({
       }),
     }),
     getBooks: builder.query({
-      query: () => "/books",
+      query: ({ searchTerm, genre, publicationDate }) => {
+        const params = new URLSearchParams();
+        if (searchTerm) params.append("searchTerm", searchTerm);
+        if (genre) params.append("genre", genre);
+        if (publicationDate) params.append("publicationDate", publicationDate);
+        return `/books?${params.toString()}`;
+      },
     }),
     getSingleBook: builder.query({
       query: (id) => `/books/${id}`,

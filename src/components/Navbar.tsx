@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 
 const Navbar = () => {
   const links=<>
-        <li><a>Item 1</a></li>
+        <li><Link to='/add-book'>Add Book</Link></li>
         <li><a>Item 3</a></li>
   </>
     return (

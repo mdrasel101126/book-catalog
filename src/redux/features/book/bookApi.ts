@@ -2,6 +2,13 @@ import { bookCatalogApi } from "../../api/apiSlice";
 
 const bookApi = bookCatalogApi.injectEndpoints({
   endpoints: (builder) => ({
+    postBook: builder.mutation({
+      query: (data) => ({
+        url: "/books/create-book",
+        method: "POST",
+        body: data,
+      }),
+    }),
     getBooks: builder.query({
       query: () => "/books",
     }),
@@ -12,4 +19,5 @@ const bookApi = bookCatalogApi.injectEndpoints({
   }),
 });
 
-export const { useGetBooksQuery, useGetSingleBookQuery } = bookApi;
+export const { useGetBooksQuery, useGetSingleBookQuery, usePostBookMutation } =
+  bookApi;

@@ -39,7 +39,7 @@ const Signup = () => {
               <span className="label-text">Name</span>
             </label>
             <input
-              type="name"
+              type="text"
               placeholder="Enter Name"
               className="input input-bordered w-full"
               {...register("name", { required: "Name is Required" })}

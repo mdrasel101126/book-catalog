@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import bookImage from '../assets/book.png';
 import { IBook } from '../types/bookTypes';
 const BookCardDetails = ({book}:IBook) => {
@@ -9,6 +10,11 @@ const BookCardDetails = ({book}:IBook) => {
            <p>Author:{book.author}</p>
            <p>Genre:{book.genre}</p>
         <p>Publication Date:{book.publicationDate}</p>
+        <div className='flex flex-row-reverse'>
+          <Link to={`/book/edit/${book._id}`}>
+          <button className='btn btn-warning text-white'>Edit Book</button></Link>
+          <button className='btn btn-error text-white mx-4'>Delete Book</button>
+        </div>
   </div>
 </div>
 );

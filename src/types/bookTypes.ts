@@ -17,3 +17,7 @@ export type IBooksResponse = {
   message: string;
   data: IBook[];
 };
+
+export type IProductId = {
+  id: string;
+};

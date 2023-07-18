@@ -30,10 +30,10 @@ const BookDetails = () => {
         <div>
             {isLoading && <Spinner/>}
             {data && <BookCardDetails book={data?.data?.book}/>}
-            <div className="w-4/5 mx-auto mt-6">
+            <div className="w-4/5 mx-auto mt-8">
                 <div>
                    <input onChange={(e)=>setReviewInput(e.target.value)} type="text" placeholder="Enter Review" className="input input-bordered w-full max-w-xs" />
-                   <button className="btn btn-primary" onClick={()=>handleReview(reviewInput)}>Add Review</button>
+                   <button className="btn btn-primary ml-4" onClick={()=>handleReview(reviewInput)}>Add Review</button>
                 </div>
                 <p className="mt-4 text-lg font-bold">Comments</p>
                 {

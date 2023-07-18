@@ -15,12 +15,12 @@ const Home = () => {
     }
    
     return (
-      <div className="sm:block md:flex flex-row">
+      <div className="sm:block md:flex flex-row mt-8">
         <div>
         <input onChange={(e)=>setSearchData(e.target.value)} type="text" placeholder="Search" className="input input-bordered w-full max-w-xs" />
-        <button className="btn btn-primary" onClick={()=>handleSearch(searchData)}>Search</button>
+        <button className="btn btn-primary ml-4" onClick={()=>handleSearch(searchData)}>Search</button>
 
-        <select onChange={(e)=>dispatch(setGenre(e.target.value))} className="select select-bordered w-full max-w-xs">
+        <select onChange={(e)=>dispatch(setGenre(e.target.value))} className="select select-bordered w-full max-w-xs mt-4">
           <option disabled defaultValue={""}>Select Genre</option>
           <option value=''>All</option>
           <option value='Fiction'>Fiction</option>
@@ -31,7 +31,7 @@ const Home = () => {
           <option value='Mystery'>Mystery</option>
         </select>
         <br />
-        <select onChange={(e)=>dispatch(setPublicationDate(e.target.value))} className="select select-bordered w-full max-w-xs">
+        <select onChange={(e)=>dispatch(setPublicationDate(e.target.value))} className="select select-bordered w-full max-w-xs mt-4">
           <option disabled defaultValue={""}>Select Publication Date</option>
           <option value=''>All</option>
           <option value='2015'>2015</option>
@@ -46,9 +46,9 @@ const Home = () => {
         </select>
         </div>
         {
-          data?.data?.data?.length === 0 && <p className="text-red-600 mx-auto text-lg">No Book Found!</p>
+          data?.data?.data?.length === 0 && <p className="text-red-600 mx-auto text-lg mt-8">No Book Found!</p>
         }
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
           {
             data?.data?.data?.map((book:IBookTypes)=><BookCard key ={book._id} book={book}/>)
           }

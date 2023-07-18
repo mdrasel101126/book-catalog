@@ -33,7 +33,7 @@ const BookCardDetails = ({book}:IBook) => {
      navigate(`/book/edit/${book._id}`)
   }
     return (
-        <div className="card card-compact  w-4/5 mx-auto bg-base-100 shadow-xl">
+        <div className="card card-compact  w-4/5 mx-auto bg-base-100 shadow-xl mt-8">
          <figure><img src={bookImage} alt="Book" /></figure>
         <div className="card-body">
           <h2 className="card-title">Title:{book.title}</h2>

@@ -1,17 +1,13 @@
 import { useForm,SubmitHandler } from "react-hook-form";
 import {Link} from 'react-router-dom';
-import { ILoginInputs } from "../types/loginTypes";
 import { ISignupTypes } from "../types/signupTypes";
+import { useCreateUserMutation } from "../redux/features/user/userApi";
 
 
 const Signup = () => {
- /*  const navigate = useNavigate();
-  const location = useLocation(); */
-  /* const from = location.state?.from?.pathname || "/"; */
 
-/*   if (token) {
-    navigate(from, { replace: true });
-  } */
+const [postUser,{isError,isSuccess,error,data:user}]=useCreateUserMutation();
+console.log(user)
 
   const {
     register,
@@ -19,7 +15,13 @@ const Signup = () => {
     formState: { errors },
   } = useForm<ISignupTypes>();
   const onSubmit: SubmitHandler<ISignupTypes> = (data) => {
-    console.log(data)
+    const options={
+      name:data.name,
+      email:data.email,
+      password:data.password,
+    }
+    console.log(options)
+    postUser(options)
   }
  
   return (

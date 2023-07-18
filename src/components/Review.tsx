@@ -1,4 +1,5 @@
 import userPic from '../assets/user-pic.jpg';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Review = ({review}:any) => {
     return (
         <div className='border-2 rounded-md mt-4 p-3 shadow-lg'>

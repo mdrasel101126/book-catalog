@@ -1,11 +1,14 @@
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { useAppDispatch } from '../redux/hooks';
 import { removeUser } from '../redux/features/user/userSlice';
 
 const Navbar = () => {
+  const navigate=useNavigate()
   const dispatch=useAppDispatch()
   const handleLogout=()=>{
     dispatch(removeUser())
+    localStorage.removeItem('bookCatalog');
+    navigate('/login')
   }
   const links=<>
         <li><Link to='/add-book'>Add Book</Link></li>

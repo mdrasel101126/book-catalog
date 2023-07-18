@@ -4,12 +4,13 @@ import BookCardDetails from "../components/BookCardDetails";
 import Review from "../components/Review";
 import { useState } from "react";
 import { usePostReviewMutation } from "../redux/features/review/reviewApi";
+import Spinner from "../components/ui/Spinner";
 
 const BookDetails = () => {
     const {id}=useParams();
     const {data,isLoading,error}=useGetSingleBookQuery(id,{pollingInterval:30000,refetchOnMountOrArgChange:true});
     const [reviewInput,setReviewInput]=useState<string>("")
-    const [postReview,{isError,isSuccess}]=usePostReviewMutation()
+    const [postReview]=usePostReviewMutation()
     const handleReview=(reviewData:string)=>{
         console.log(reviewData)
         const options={
@@ -21,6 +22,7 @@ const BookDetails = () => {
     }
     return (
         <div>
+            {isLoading && <Spinner/>}
             {data && <BookCardDetails book={data?.data?.book}/>}
             <div className="">
                 <div>

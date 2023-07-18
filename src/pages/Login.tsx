@@ -1,5 +1,5 @@
 import { useForm,SubmitHandler } from "react-hook-form";
-import {Link} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import { ILoginInputs } from "../types/loginTypes";
 import { useLoginUserMutation } from "../redux/features/user/userApi";
 import { useAppDispatch } from "../redux/hooks";
@@ -7,16 +7,14 @@ import { saveUser } from "../redux/features/user/userSlice";
 
 
 const Login = () => {
- /*  const navigate = useNavigate();
-  const location = useLocation(); */
-  /* const from = location.state?.from?.pathname || "/"; */
-
-/*   if (token) {
-    navigate(from, { replace: true });
-  } */
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const dispatch=useAppDispatch()
   const [postLogin,{isError,data:user}]=useLoginUserMutation()
- console.log(user)
+  if (user) {
+    navigate(from, { replace: true });
+  }
  if(user){
   dispatch(saveUser({email:user.data?.user?.email,_id:user.data?.user?._id,accessToken:user.data?.accessToken}))
   localStorage.setItem('bookCatalog',user.data?.accessToken);

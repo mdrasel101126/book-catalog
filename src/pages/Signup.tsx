@@ -81,19 +81,21 @@ if(user){
             />
            {errors.password && <span  className="text-sm text-red-500">{errors.password.message}</span>}
           </div>
-       
+          {
+            isError && <p className="text-sm text-red-600">Something Went Wrong!</p>
+          }
           <input
             className="btn btn-primary w-full bg-gradient-to-r from-primary to-secondary "
             type="submit"
-            value="Login"
+            value="Signup"
           />
         </form>
         <label className="label">
           <p>
             <small>
               Already Have an Account?{" "}
-              <Link to="/signup" className="label-text text-primary">
-                Please signup
+              <Link to="/login" className="label-text text-primary">
+                Please Login
               </Link>
             </small>
           </p>

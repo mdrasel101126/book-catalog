@@ -11,7 +11,7 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const dispatch=useAppDispatch()
-  const [postLogin,{isError,data:user}]=useLoginUserMutation()
+  const [postLogin,{isError,data:user,error}]=useLoginUserMutation();
   if (user) {
     navigate(from, { replace: true });
   }
@@ -72,7 +72,9 @@ const Login = () => {
             />
             {errors.password && <span  className="text-sm text-red-500">{errors.password.message}</span>}
           </div>
-       
+          {
+            isError && <p className="text-sm text-red-600">Something Went Wrong!</p>
+          }
           <input
             className="btn btn-primary w-full bg-gradient-to-r from-primary to-secondary "
             type="submit"
@@ -82,7 +84,7 @@ const Login = () => {
         <label className="label">
           <p>
             <small>
-              Already Have an Account?{" "}
+              No Account?{" "}
               <Link to="/signup" className="label-text text-primary">
                 Please signup
               </Link>

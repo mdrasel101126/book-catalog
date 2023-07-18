@@ -1,13 +1,16 @@
 import { useForm,SubmitHandler } from "react-hook-form";
 import { IBookTypes } from "../types/bookTypes";
 import { useGetSingleBookQuery, useUpdateBookMutation } from "../redux/features/book/bookApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import Spinner from "../components/ui/Spinner";
 
 
 const EditBook = () => {
+    const navigate=useNavigate()
     const {id}=useParams()
     const {data:book,isLoading}=useGetSingleBookQuery(id)
-    const [updateBook,{isError,isSuccess,data}]=useUpdateBookMutation();
+    const [updateBook,{isError,isSuccess,data,error}]=useUpdateBookMutation();
     console.log(data);
   const {
     register,
@@ -27,10 +30,20 @@ const EditBook = () => {
     }
     updateBook(options)
   }
+
+  if(isSuccess && data){
+    toast.success("Book Eddited Successfully");
+    navigate('/')
+  }
+  if(isError){
+    return toast.error("Something went wrong!")
+  }
  
   return (
     <div className="my-20">
-      
+      {
+        isLoading && <Spinner/>
+      }
       <div className="w-11/12 md:w-3/5 lg:w-1/2 mx-auto mt-16 bg-base-200 p-6 rounded-xl">
         <h1 className="text-3xl font-bold text-center text-violet-800 mb-6">
           Please Update Book

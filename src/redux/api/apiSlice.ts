@@ -12,6 +12,6 @@ export const bookCatalogApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["reviews"],
+  tagTypes: ["reviews", "addBook", "deleteBook", "updateBook"],
   endpoints: () => ({}),
 });

@@ -8,12 +8,14 @@ const bookApi = bookCatalogApi.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
+      invalidatesTags: ["updateBook"],
     }),
     deleteBook: builder.mutation({
       query: (id) => ({
         url: `/books/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["deleteBook"],
     }),
     postBook: builder.mutation({
       query: (data) => ({
@@ -21,6 +23,7 @@ const bookApi = bookCatalogApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["addBook"],
     }),
     getBooks: builder.query({
       query: ({ searchTerm, genre, publicationDate }) => {
@@ -30,6 +33,7 @@ const bookApi = bookCatalogApi.injectEndpoints({
         if (publicationDate) params.append("publicationDate", publicationDate);
         return `/books?${params.toString()}`;
       },
+      providesTags: ["reviews", "addBook", "deleteBook", "updateBook"],
     }),
     getSingleBook: builder.query({
       query: (id) => `/books/${id}`,

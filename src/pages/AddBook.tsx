@@ -1,14 +1,19 @@
 import { useForm,SubmitHandler } from "react-hook-form";
 import { IBookTypes } from "../types/bookTypes";
 import { usePostBookMutation } from "../redux/features/book/bookApi";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../redux/hooks";
 
 
 const AddBook = () => {
-    const [postBook,{isError,isSuccess,data}]=usePostBookMutation();
-    console.log(data);
+  const navigate=useNavigate()
+  const {_id}=useAppSelector(state=>state.user)
+  const [postBook,{data,isError}]=usePostBookMutation();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<IBookTypes>();
   const onSubmit: SubmitHandler<IBookTypes> = (data) => {
@@ -18,9 +23,17 @@ const AddBook = () => {
         author:data.author,
         genre:data.genre,
         publicationDate:data.publicationDate,
-        posterId:"64b12f823b5d320e57a3cf8c"
+        posterId:_id,
     }
     postBook(options)
+    reset()
+  }
+  if(data){
+    toast.success("Book Added Successfully");
+    navigate('/')
+  }
+  if(isError){
+    toast.error("Something went wrong!")
   }
  
   return (

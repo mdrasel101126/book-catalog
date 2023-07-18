@@ -10,8 +10,8 @@ import { toast } from "react-hot-toast";
 
 const BookDetails = () => {
     const {id}=useParams();
-    const {email,_id}=useAppSelector(state=>state.user)
-    const {data,isLoading,error}=useGetSingleBookQuery(id,{pollingInterval:30000,refetchOnMountOrArgChange:true});
+    const {_id}=useAppSelector(state=>state.user)
+    const {data,isLoading}=useGetSingleBookQuery(id,{pollingInterval:30000,refetchOnMountOrArgChange:true});
     const [reviewInput,setReviewInput]=useState<string>("")
     const [postReview]=usePostReviewMutation()
     const handleReview=(reviewData:string)=>{

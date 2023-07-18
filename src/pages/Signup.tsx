@@ -2,13 +2,13 @@ import { useForm,SubmitHandler } from "react-hook-form";
 import {Link, useNavigate} from 'react-router-dom';
 import { ISignupTypes } from "../types/signupTypes";
 import { useCreateUserMutation } from "../redux/features/user/userApi";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppDispatch } from "../redux/hooks";
 import { saveUser } from "../redux/features/user/userSlice";
 
 
 const Signup = () => {
 const navigate = useNavigate()
-const [postUser,{isError,isSuccess,error,data:user}]=useCreateUserMutation();
+const [postUser,{isError,data:user}]=useCreateUserMutation();
 const dispatch=useAppDispatch()
 if(user){
   dispatch(saveUser({email:user.data?.user?.email,_id:user.data?.user?._id,accessToken:user.data?.accessToken}))

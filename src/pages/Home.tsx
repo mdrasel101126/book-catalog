@@ -9,7 +9,7 @@ const Home = () => {
     const [searchData,setSearchData]=useState<string>("")
     const {genre,publicationDate,searchTerm}=useAppSelector(state=>state.book);
     const dispatch=useAppDispatch()
-    const {data,isLoading,error}=useGetBooksQuery({searchTerm:searchTerm,genre:genre,publicationDate:publicationDate})
+    const {data}=useGetBooksQuery({searchTerm:searchTerm,genre:genre,publicationDate:publicationDate})
     const handleSearch=(data:string)=>{
       dispatch(setSearchTerm(data))
     }

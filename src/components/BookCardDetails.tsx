@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import bookImage from '../assets/book.png';
 import { IBook } from '../types/bookTypes';
 import { useDeleteBookMutation } from '../redux/features/book/bookApi';
@@ -6,7 +6,7 @@ import { useAppSelector } from '../redux/hooks';
 import { toast } from 'react-hot-toast';
 const BookCardDetails = ({book}:IBook) => {
   const navigate=useNavigate()
-  const [deleteBook,{isError,isSuccess,error,data}]=useDeleteBookMutation();
+  const [deleteBook,{isSuccess,data}]=useDeleteBookMutation();
   /* console.log(data) */
   const {email,_id}=useAppSelector(state=>state.user)
   const handleDeleteBook=(id:string)=>{

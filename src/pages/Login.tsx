@@ -11,7 +11,7 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const dispatch=useAppDispatch()
-  const [postLogin,{isError,data:user,error}]=useLoginUserMutation();
+  const [postLogin,{isError,data:user}]=useLoginUserMutation();
   if (user) {
     navigate(from, { replace: true });
   }

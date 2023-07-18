@@ -10,7 +10,7 @@ const EditBook = () => {
     const navigate=useNavigate()
     const {id}=useParams()
     const {data:book,isLoading}=useGetSingleBookQuery(id)
-    const [updateBook,{isError,isSuccess,data,error}]=useUpdateBookMutation();
+    const [updateBook,{isError,isSuccess,data}]=useUpdateBookMutation();
     console.log(data);
   const {
     register,

@@ -44,7 +44,7 @@ const userApi = bookCatalogApi.injectEndpoints({
       }),
     }),
     getUser: builder.query({
-      query: (id) => `/users/${id}`,
+      query: () => `/users/profile`,
     }),
   }),
 });

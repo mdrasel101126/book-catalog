@@ -1,6 +1,12 @@
 import {Link} from 'react-router-dom';
+import { useAppDispatch } from '../redux/hooks';
+import { removeUser } from '../redux/features/user/userSlice';
 
 const Navbar = () => {
+  const dispatch=useAppDispatch()
+  const handleLogout=()=>{
+    dispatch(removeUser())
+  }
   const links=<>
         <li><Link to='/add-book'>Add Book</Link></li>
         <li><a>Item 3</a></li>
@@ -25,7 +31,7 @@ const Navbar = () => {
   </div>
   <div className="navbar-end">
     <Link to='/login'>Login</Link>
-    <a className="btn btn-primary">Logout</a>
+    <button onClick={()=>handleLogout()} className="btn btn-primary">Logout</button>
   </div>
 </div>
 );

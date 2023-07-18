@@ -1,9 +1,10 @@
 import {Link, useNavigate} from 'react-router-dom';
-import { useAppDispatch } from '../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { removeUser } from '../redux/features/user/userSlice';
 
 const Navbar = () => {
   const navigate=useNavigate()
+  const {email}=useAppSelector(state=>state.user)
   const dispatch=useAppDispatch()
   const handleLogout=()=>{
     dispatch(removeUser())
@@ -11,11 +12,11 @@ const Navbar = () => {
     navigate('/login')
   }
   const links=<>
-        <li><Link to='/add-book'>Add Book</Link></li>
-        <li><a>Item 3</a></li>
+        <li><Link to='/add-book'><button className='btn btn-primary'>Add Book</button></Link></li>
+        <li><Link to='/dashboard'><button className='btn btn-primary'>Dashboard</button></Link></li>
   </>
     return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-neutral-content">
             <div className="navbar-start">
             <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -25,7 +26,7 @@ const Navbar = () => {
         {links}
       </ul>
     </div>
-    <Link to='/' className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+    <Link to='/' className="btn btn-ghost normal-case text-xl">Book Catalog</Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -33,8 +34,9 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <Link to='/login'>Login</Link>
-    <button onClick={()=>handleLogout()} className="btn btn-primary">Logout</button>
+    {
+      email?<button onClick={()=>handleLogout()} className="btn btn-primary">Logout</button>:<Link to='/login'>Login</Link>
+    }
   </div>
 </div>
 );

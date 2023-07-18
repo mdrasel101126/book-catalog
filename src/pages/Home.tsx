@@ -45,6 +45,9 @@ const Home = () => {
           <option value='2023'>2023</option>
         </select>
         </div>
+        {
+          data?.data?.data?.length === 0 && <p className="text-red-600 mx-auto text-lg">No Book Found!</p>
+        }
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {
             data?.data?.data?.map((book:IBookTypes)=><BookCard key ={book._id} book={book}/>)
